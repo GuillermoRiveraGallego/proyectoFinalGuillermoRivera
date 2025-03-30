@@ -5,23 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Resena extends Model
+class PedidoProducto extends Model
 {
-
     use HasFactory;
 
-    protected $table = 'resenas';
+    protected $table = 'pedido_productos';
 
-    protected $fillable = ['usuario_id', 'producto_id', 'puntuacion', 'comentario'];
+    protected $fillable = ['pedido_id', 'producto_id', 'cantidad', 'precio_unitario'];
 
-    public function usuario()
+    public function pedido()
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(Pedido::class);
     }
 
     public function producto()
     {
         return $this->belongsTo(Producto::class);
     }
-
 }

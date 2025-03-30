@@ -17,15 +17,16 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('apellidos');
             $table->string('contrasena');
-            $table->string('correo');
-            $table->boolean('es_admin');
+            $table->string('correo')->unique();
+            $table->boolean('es_admin')->default(false);;
             $table->string('foto_perfil');
+            $table->rememberToken(); // Necesario para el login
             $table->timestamps();
         });
 
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
+            $table->foreignId('user_id')->nullable()->constrained('usuarios')->onDelete('cascade');
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');

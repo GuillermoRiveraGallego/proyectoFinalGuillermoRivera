@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
+            $table->decimal('total', 10, 2);
+            $table->enum('metodo_pago', ['tarjeta', 'paypal', 'transferencia'])->default('tarjeta');
+            $table->dateTime('fecha_pago');
             $table->timestamps();
         });
     }

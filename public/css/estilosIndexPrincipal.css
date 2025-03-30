@@ -1,0 +1,582 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital@1&display=swap');
+body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    height: 5em;
+    color: white;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.headerTituloYlogo{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.logoHeader {
+    width: 5em;
+    height: 5em;
+}
+
+.tituloHeader {
+    font-size: 2em;
+    font-family: "Oswald";
+    font-weight: 600;
+}
+
+.tituloHeader a{
+    text-decoration: none;
+    color: white;
+}
+
+
+.linksHeader{
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0.738em;
+    margin-right: 1em;
+
+}
+
+.linksHeader a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+
+}
+
+.linksHeader a:hover {
+    color: #B22222;
+    text-decoration: none;
+    font-size: 1.1rem;
+
+}
+
+.buscadorHeader{
+    display: flex;
+    align-items: center;
+}
+
+.buscadorHeader input[type="text"] {
+    padding: 0.313em 0.625em;
+    font-size: 1rem;
+    border-radius: 0.313em;
+    border: none;
+    outline: none;
+}
+
+
+/*Hamburguesa para tablet y movil*/
+
+@media screen and (max-width: 1024px){
+
+
+    .buscadorHeader{
+        display: none;
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Esto ya de footer*/
+
+
+footer {
+    display: grid;
+    grid-template-columns: 40% 10% 40%;
+    width: 100%;
+    height: 3.75em;
+    background-color: black;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.contenedorLogos{
+    display: flex;
+    justify-content: space-evenly;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.logos{
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.logos a{
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*contenido Web*/
+
+
+/* Contenedor principal */
+.contenidoWeb {
+    display: grid;
+    grid-template-columns: 1fr 5fr; /* Menú de 250px y resto para productos */
+    gap: 20px;
+    margin-top: 5em;
+    padding: 20px;
+}
+
+/* Menú lateral */
+.menuLateral {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    height: fit-content;
+
+}
+
+.menuLateral h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.menuLateral ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menuLateral li {
+    margin-bottom: 10px;
+}
+
+.menuLateral a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2em;
+    display: block;
+    padding: 8px;
+    border-radius: 5px;
+
+}
+
+.menuLateral a:hover {
+    background-color: #B22222;
+    color: white;
+}
+
+@media screen and (min-width: 1025px) {
+    .desplegableCategorias {
+        display: block !important; /* Siempre visible en desktop */
+    }
+}
+
+/*  Productos */
+.productos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 🛒 4 columnas en escritorio */
+    gap: 20px;
+}
+
+/* Tarjetas de productos */
+.producto {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.producto img {
+    width: 100%;
+    max-width: 285px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.producto img:hover {
+
+    transform: scale(1.10);
+}
+
+.producto h4 {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.producto p {
+    color: #B22222;
+    font-weight: bold;
+}
+
+/* 🔥 Responsive para móviles */
+@media screen and (max-width: 1024px) {
+
+
+    .contenidoWeb {
+        grid-template-columns: 1fr; /* Se vuelve una sola columna */
+    }
+
+    .menuLateral {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .productos {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .productos {
+        grid-template-columns: repeat(1, 1fr); /* 1 columna en móviles */
+    }
+}
+
+
+
+
+
+
+/*unProducto*/
+
+
+.htmlProducto, .bodyProducto {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenidoWebUnProducto {
+    flex: 1;
+}
+
+.contenidoWebUnProducto {
+    display: grid;
+    grid-template-columns: 200px auto;
+    gap: 20px;
+    margin-top: 6em;
+    padding: 20px;
+}
+
+/* MENÚ LATERAL */
+.menuLateral {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.menuLateral h3 a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2em;
+}
+
+/* PRODUCTO DETALLE */
+.productoDetalle {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    align-items: center;
+    gap: 30px;
+    background-color: white;
+    padding: 1.2em;
+    border-radius: 0.625;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.imagenProducto img {
+    width: 100%;
+    border-radius: 0.625;
+}
+
+.infoProducto {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.infoProducto h2 {
+    font-size: 2em;
+}
+
+.precio {
+    font-size: 1.8em;
+    color: #B22222;
+    font-weight: bold;
+}
+
+.descripcion {
+    font-size: 1.1em;
+    color: #555;
+}
+
+.opcionesCompra {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.botonCompra {
+    background-color: #B22222;
+    color: white;
+    font-size: 1.2em;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botonCompra:hover {
+    background-color: #ff4d4d;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+
+    .htmlProducto, .bodyProducto {
+        height: auto;
+    }
+
+
+
+    .contenidoWebUnProducto {
+        grid-template-columns: 1fr;
+    }
+
+    .productoDetalle {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .opcionesCompra {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .productoDetalle {
+        padding: 15px;
+    }
+
+    .infoProducto h2 {
+        font-size: 1.5em;
+    }
+
+    .precio {
+        font-size: 1.5em;
+    }
+
+    .botonCompra {
+        font-size: 1em;
+    }
+}
+
+
+
+
+
+
+
+
+.bodyInicio{
+    background-color: rgba(31,31,33,255);
+}
+
+.vistaInicial{
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5em;
+    gap: 2em;
+}
+
+.imagenInicial {
+    width: 100%;
+    padding: 0 2em;
+    box-sizing: border-box;
+}
+
+.imagenInicial img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 1em;
+    object-fit: cover; /* Si usas height fija */
+}
+
+
+.tresImagenesInicial {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2em; /* espacio entre las imágenes */
+    padding: 0 2em; /* espacio a los lados */
+    width: 100%;
+    box-sizing: border-box; /* asegura que el padding no rompa el layout */
+}
+
+.tresImagenesInicial img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.5em; /* opcional, por si quieres bordes redondeados */
+    transition: transform 0.3s ease;
+}
+
+.tresImagenesInicial img:hover {
+    transform: scale(1.05);
+}
+
+
+.contenedorImagenConBoton {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+
+.botonEncima {
+    position: absolute;
+    top: 86%; /* más hacia abajo */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #111;
+    padding: 0.6em 1.8em;
+    border: none;
+    border-radius: 999px;
+    font-size: 0.95em;
+    font-weight: 600;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-family: "Kanit", sans-serif;
+
+    font-style: normal;
+}
+
+.botonEncima:hover {
+    background-color: white;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+.contenedorImagenConBoton::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.contenedorImagenConBoton:hover::before {
+    opacity: 1;
+}
+.botonEncima {
+    z-index: 2;
+}
+@media (max-width: 768px) {
+    .imagenInicial img {
+        max-height: 300px;
+        object-fit: cover;
+    }
+}
+@media (max-width: 768px) {
+    .botonEncima {
+        top: 65%; /* más centrado en móvil */
+        padding: 0.5em 1.5em;
+        font-size: 0.9em;
+    }
+    .footerInicio{
+        display: none;
+    }
+    .vistaInicial{
+        margin-bottom: 1em;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
