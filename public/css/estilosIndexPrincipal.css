@@ -375,6 +375,60 @@ footer {
     background-color: #ff4d4d;
 }
 
+/*Estilos paginacion*/
+
+.paginacion {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    margin-top: 3em;
+    flex-wrap: wrap;
+}
+
+.botonDePagina {
+    background-color: #ffffff;
+    color: #1f1f21;
+    padding: 0.6em 1.4em;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.botonDePagina:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.05);
+}
+
+.paginaActual {
+    font-weight: bold;
+    color: white;
+    background-color: #333;
+    padding: 0.5em 1.2em;
+    border-radius: 999px;
+}
+
+@media (max-width: 768px) {
+    .paginacion {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8em;
+    }
+
+    .botonDePagina,
+    .paginaActual {
+        width: fit-content;
+        min-width: 140px;
+        text-align: center;
+    }
+}
+
+
+
+
 
 
 @media screen and (max-width: 1024px) {
@@ -416,6 +470,9 @@ footer {
         font-size: 1em;
     }
 }
+
+
+
 
 
 
@@ -492,13 +549,13 @@ footer {
     padding: 0.6em 1.8em;
     border: none;
     border-radius: 999px;
-    font-size: 0.95em;
-    font-weight: 600;
+
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     text-decoration: none;
     font-family: "Kanit", sans-serif;
-
+    font-size: 0.95em;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -542,6 +599,23 @@ footer {
         margin-bottom: 1em;
     }
 }
+
+
+.inicioSesion{
+    font-family: "Kanit", sans-serif;
+    font-style: normal;
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

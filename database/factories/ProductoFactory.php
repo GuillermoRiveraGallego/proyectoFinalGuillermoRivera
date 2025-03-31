@@ -27,8 +27,10 @@ class ProductoFactory extends Factory
                 'Imagenes/camisetaEspana2.png'  // Imagen 2 (trasera)
             ]),
             'stock' => $this->faker->numberBetween(0, 100),
-            'categoria_id' => Categoria::factory(),
+            'categoria_id' => $this->faker->numberBetween(1, 3),
             'disponible' => $this->faker->boolean(),
         ];
     }
 }
+
+

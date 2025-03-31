@@ -20,8 +20,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $categorias = ['Camisetas', 'Pantalones', 'Zapatillas'];
+
+        foreach ($categorias as $nombre) {
+            Categoria::firstOrCreate(
+                ['nombre' => $nombre],
+                ['descripcion' => 'Categoría de ' . strtolower($nombre)]
+            );
+        }
+
+        // Seeders normales
         Usuario::factory(10)->create();
-        Categoria::factory(5)->create();
         Producto::factory(20)->create();
         Factura::factory(10)->create();
         Pedido::factory(15)->create();

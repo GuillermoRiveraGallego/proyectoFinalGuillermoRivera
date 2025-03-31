@@ -20,7 +20,7 @@ class UsuarioFactory extends Factory
     {
         return [
 
-            'nombre_usuario' => $this->faker->userName(),
+            'nombre_usuario' => $this->faker->unique()->userName,
             'nombre' => $this->faker->firstName(),
             'apellidos' => $this->faker->lastName(),
             'correo' => $this->faker->unique()->safeEmail(),

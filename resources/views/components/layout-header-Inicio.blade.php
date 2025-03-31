@@ -15,15 +15,11 @@
 
     <div class="headerTituloYlogo">
         <img class="logoHeader" src="Imagenes/iconoBg1.png" alt="Logo FUTSALWEAR">
-        <div class="tituloHeader"> <a href="">FUTSALWEAR</a></div>
+        <div class="tituloHeader"> <a href="{{ url('/') }}">FUTSALWEAR</a></div>
     </div>
 
     <div class="linksHeader">
-        <a href="">&#128100;</a>
-        <a href="">&#128722;</a>
-        <div class="buscadorHeader">
-            <input type="text" placeholder="¿Qué estás buscando?">
-        </div>
+        <a href="" class="inicioSesion">LOGIN</a>
     </div>
 
 </header>
