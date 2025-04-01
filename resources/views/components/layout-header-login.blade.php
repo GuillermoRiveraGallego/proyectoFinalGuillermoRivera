@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FutsalWear</title>
     <link rel="shortcut icon" href="../imagenesWEB/iconoBg.png" type="image/x-icon">
-    <link rel="stylesheet" href="{{URL::asset('css/estilosIndexPrincipal.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/loginCss.css')}}">
     <script type="text/javascript" src="jquery-3.7.1.js"></script>
 </head>
 
@@ -28,16 +28,12 @@
 {{$slot}}
 
 
-<footer class="footerInicio">
-
+<footer>
     <div class="contenedorLogos">
-
-        <a href=""><img class="logos" src="Imagenes/instagramLogo.jpg" alt="instagram Logo"></a>
-        <a href=""><img class="logos" src="Imagenes/twitterLogo.jpg" alt="twitter Logo"></a>
-        <a href=""><img class="logos" src="Imagenes/tiktokLogo.jpg" alt="tiktok Logo"></a>
-
+        <a href=""><img class="logos" src="/Imagenes/instagramLogo.jpg" alt="instagram Logo"></a>
+        <a href=""><img class="logos" src="/Imagenes/twitterLogo.jpg" alt="twitter Logo"></a>
+        <a href=""><img class="logos" src="/Imagenes/tiktokLogo.jpg" alt="tiktok Logo"></a>
     </div>
-
 </footer>
 
 </body>

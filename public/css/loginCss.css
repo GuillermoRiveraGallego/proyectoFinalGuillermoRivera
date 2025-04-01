@@ -1,0 +1,172 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Kanit", sans-serif;
+    background-color: #f4f4f4;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    height: 5em;
+    color: white;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.headerTituloYlogo{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.logoHeader {
+    width: 5em;
+    height: 5em;
+}
+
+.tituloHeader {
+    font-size: 2em;
+    font-family: "Oswald";
+    font-weight: 600;
+}
+
+.tituloHeader a{
+    text-decoration: none;
+    color: white;
+}
+
+
+.linksHeader{
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0.738em;
+    margin-right: 1em;
+
+}
+
+.linksHeader a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+
+}
+
+.linksHeader a:hover {
+    color: #B22222;
+    text-decoration: none;
+    font-size: 1.1rem;
+
+}
+
+.inicioSesion {
+    flex: 1;
+    margin-top: 7em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+}
+
+.inicioSesion form {
+    background-color: white;
+    padding: 2em;
+    padding-right: 3.5em;
+    border-radius: 1em;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.inicioSesion h2 {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 1.8em;
+    color: #B22222;
+}
+
+.inicioSesion input[type="text"],
+.inicioSesion input[type="password"] {
+    width: 100%;
+    padding: 0.8em;
+    margin-bottom: 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    font-size: 1em;
+}
+
+.botonCompra {
+    width: 100%;
+    background-color: #B22222;
+    color: white;
+    padding: 0.75em;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botonCompra:hover {
+    background-color: #ff4d4d;
+}
+
+footer {
+    display: grid;
+    grid-template-columns: 40% 10% 40%;
+    width: 100%;
+    height: 3.75em;
+    background-color: black;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.contenedorLogos {
+    display: flex;
+    justify-content: space-evenly;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.logos {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.logos a {
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    .inicioSesion {
+        padding: 1em;
+    }
+
+    .inicioSesion form {
+        padding: 1.5em;
+    }
+
+    .inicioSesion h2 {
+        font-size: 1.5em;
+    }
+
+    .botonCompra {
+        font-size: 1em;
+    }
+}
+

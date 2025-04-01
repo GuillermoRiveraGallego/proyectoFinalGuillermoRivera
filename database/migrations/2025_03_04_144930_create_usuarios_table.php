@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('contrasena');
             $table->string('correo')->unique();
             $table->boolean('es_admin')->default(false);;
-            $table->string('foto_perfil');
             $table->rememberToken(); // Necesario para el login
             $table->timestamps();
         });

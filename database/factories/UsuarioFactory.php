@@ -26,7 +26,6 @@ class UsuarioFactory extends Factory
             'correo' => $this->faker->unique()->safeEmail(),
             'contrasena' => bcrypt('password'), // Contraseña por defecto
             'es_admin' => false,
-            'foto_perfil' => $this->faker->imageUrl(100, 100, 'people'),
 
         ];
     }

@@ -1,35 +1,41 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = 'usuarios'; // Laravel espera "users", así que lo especificamos.
+    protected $table = 'usuarios';
 
     protected $fillable = [
-        'nombre_usuario', 'nombre', 'apellidos', 'password', 'correo', 'es_admin', 'foto_perfil'
+        'nombre_usuario', 'nombre', 'apellidos', 'correo', 'contrasena', 'es_admin'
     ];
 
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['contrasena', 'remember_token'];
 
-    // Un usuario puede tener muchos pedidos
+    // Le indicamos a Laravel que nuestra contraseña se llama 'contrasena'
+    public function getAuthPassword()
+    {
+        return $this->contrasena;
+    }
+
+    // Relaciones
     public function pedidos()
     {
         return $this->hasMany(Pedido::class);
     }
 
-    // Un usuario puede tener muchas reseñas
     public function resenas()
     {
         return $this->hasMany(Resena::class);
     }
 
-    // Un usuario puede tener muchas facturas
     public function facturas()
     {
         return $this->hasMany(Factura::class);
