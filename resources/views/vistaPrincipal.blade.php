@@ -15,14 +15,8 @@
             @foreach ($producto as $po)
                 <div class="producto">
                     <a href="{{ route('producto.mostrar', $po->id) }}">
-                        @php
-                            $imagen = collect(json_decode($po->imagenes))->first();
-                        @endphp
-
-                        @if ($imagen)
-                            <img src="{{ asset($imagen) }}" alt="Imagen del producto">
-                        @endif
-                        </a>
+                        <img src="{{ asset($po->imagenes) }}" alt="Imagen del producto">
+                    </a>
                         <h4>{{ $po->nombre }}</h4>
                         <p>€{{ number_format($po->precio, 2) }}</p>
 

@@ -74,4 +74,55 @@ class UsuarioController extends Controller
         return view('perfil', compact('usuario'));
     }
 
+    public function funcionEliminarUsuario(Request $request)
+    {
+        $usuarioId = $request->input('usuario_id');
+
+        // Evitar que un admin se elimine a sí mismo (opcional pero recomendable)
+        if (auth()->id() == $usuarioId) {
+            return redirect()->route('eliminarUsuario')
+                ->with('error', 'No puedes eliminar tu propia cuenta.');
+        }
+
+        $usuario = Usuario::find($usuarioId);
+
+        if ($usuario) {
+            $usuario->delete();
+
+            return redirect()->route('eliminarUsuario')
+                ->with('success', 'Usuario eliminado correctamente.');
+        } else {
+            return redirect()->route('eliminarUsuario')
+                ->with('error', 'El usuario no fue encontrado.');
+        }
+    }
+
+
+    public function funcionHacerAdmin(Request $request)
+    {
+        $usuarioId = $request->input('usuario_id');
+
+        // Evitar convertirte a ti mismo si ya eres admin (opcional)
+        if (auth()->id() == $usuarioId) {
+            return redirect()->route('hacerAdmin')->with('error', 'Ya eres administrador.');
+        }
+
+        $usuario = Usuario::find($usuarioId);
+
+        if ($usuario) {
+            // Solo actualiza si no es ya admin
+            if (!$usuario->es_admin) {
+                $usuario->es_admin = 1;
+                $usuario->save();
+
+                return redirect()->route('hacerAdmin')->with('success', 'El usuario ahora es administrador.');
+            } else {
+                return redirect()->route('hacerAdmin')->with('error', 'Ese usuario ya es administrador.');
+            }
+        } else {
+            return redirect()->route('hacerAdmin')->with('error', 'Usuario no encontrado.');
+        }
+    }
+
+
 }

@@ -22,10 +22,7 @@ class ProductoFactory extends Factory
             'nombre' => $this->faker->unique()->word(),
             'descripcion' => $this->faker->sentence(),
             'precio' => $this->faker->randomFloat(2, 1, 500),
-            'imagenes' => json_encode([
-                'Imagenes/camisetaEspana.png', // Imagen 1 (frontal)
-                'Imagenes/camisetaEspana2.png'  // Imagen 2 (trasera)
-            ]),
+            'imagenes' => 'Imagenes/camisetaEspana.png',
             'stock' => $this->faker->numberBetween(0, 100),
             'categoria_id' => $this->faker->numberBetween(1, 3),
             'disponible' => $this->faker->boolean(),

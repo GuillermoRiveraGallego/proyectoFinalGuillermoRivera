@@ -6,13 +6,10 @@
 
         <section class="productoDetalle">
             <div class="imagenProducto">
-                @php
-                    $imagen = collect(json_decode($producto->imagenes))->first();
-                @endphp
-
-                @if ($imagen)
-                    <img src="{{ asset($imagen) }}" alt="Imagen del producto">
+                @if ($producto->imagenes)
+                    <img src="{{ asset($producto->imagenes) }}" alt="Imagen del producto">
                 @endif
+
             </div>
 
             <div class="infoProducto">

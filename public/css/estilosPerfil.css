@@ -194,3 +194,131 @@ footer {
 }
 
 
+
+
+
+
+
+/*zona administracion botones*/
+
+
+
+
+
+.zonaAdmin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+    background-color: white;
+    padding: 2em;
+    border-radius: 1em;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 6em auto 2em auto;
+    font-family: "Kanit", sans-serif;
+}
+
+.botonAdminAccion {
+    background-color: #B22222;
+    color: white;
+    font-size: 1.1em;
+    padding: 0.8em 1.5em;
+    border: none;
+    border-radius: 0.7em;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: "Kanit", sans-serif;
+}
+
+.botonAdminAccion:hover {
+    background-color: #ff4d4d;
+    transform: scale(1.03);
+}
+
+@media (max-width: 600px) {
+    .zonaAdmin {
+        padding: 1.5em;
+        gap: 1em;
+    }
+
+    .botonAdminAccion {
+        font-size: 1em;
+        padding: 0.7em;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.selectorProducto {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.8em;
+    margin-bottom: 1.2em;
+    border-radius: 0.5em;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    font-family: "Kanit", sans-serif;
+}
+
+.botonAdminAccion {
+    background-color: #B22222;
+    color: white;
+    padding: 0.7em 1.4em;
+    font-size: 1em;
+    border: none;
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botonAdminAccion:hover {
+    background-color: #ff4d4d;
+}
+.alertaExito {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 1em;
+    border: 1px solid #c3e6cb;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+
+.alertaError {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 1em;
+    border: 1px solid #f5c6cb;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

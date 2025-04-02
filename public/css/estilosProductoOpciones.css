@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Kanit', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    height: 5em;
+    color: white;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.headerTituloYlogo {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.logoHeader {
+    width: 5em;
+    height: 5em;
+}
+
+.tituloHeader {
+    font-size: 2em;
+    font-family: "Oswald";
+    font-weight: 600;
+}
+
+.tituloHeader a {
+    text-decoration: none;
+    color: white;
+}
+
+.linksHeader {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0.738em;
+    margin-right: 1em;
+}
+
+.linksHeader a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.linksHeader a:hover {
+    color: #B22222;
+    font-size: 1.1rem;
+}
+
+/* Footer */
+footer {
+    display: grid;
+    grid-template-columns: 40% 10% 40%;
+    width: 100%;
+    height: 3.75em;
+    background-color: black;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.contenedorLogos {
+    display: flex;
+    justify-content: space-evenly;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.logos {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.logos a {
+    text-decoration: none;
+}
+
+/* FORMULARIO CREAR PRODUCTO */
+.formularioProducto {
+    max-width: 1000px;
+    margin: 6em auto 3em auto;
+    background-color: #fff;
+    border-radius: 1.5em;
+    padding: 2.5em 4em;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    font-family: 'Kanit', sans-serif;
+}
+
+.formularioProducto h2 {
+    text-align: center;
+    margin-bottom: 1.5em;
+    color: #B22222;
+    font-size: 2.2em;
+}
+
+.campoFormulario {
+    margin-bottom: 1.2em;
+    display: flex;
+    flex-direction: column;
+}
+
+.campoFormulario label {
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    font-size: 1em;
+    color: #333;
+}
+
+.campoFormulario input,
+.campoFormulario select,
+.campoFormulario textarea {
+    padding: 0.9em 1em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    font-size: 1em;
+    background-color: #fefefe;
+    transition: border 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.campoFormulario input:focus,
+.campoFormulario select:focus,
+.campoFormulario textarea:focus {
+    outline: none;
+    border-color: #B22222;
+}
+
+.campoFormularioGrupo {
+    display: flex;
+    gap: 3em;
+    margin-bottom: 1.2em;
+}
+
+.campoFormulario.mitad {
+    flex: 1;
+}
+
+.botonCompra {
+    background-color: #B22222;
+    color: white;
+    padding: 0.9em;
+    font-size: 1.15em;
+    border: none;
+    border-radius: 0.6em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1em;
+}
+
+.botonCompra:hover {
+    background-color: #ff4d4d;
+}
+
+/* Alertas */
+.alertaExito,
+.alertaError {
+    padding: 1em;
+    border-radius: 0.5em;
+    font-weight: 500;
+    margin-top: 1em;
+    text-align: center;
+}
+
+.alertaExito {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alertaError {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+@media (max-width: 768px) {
+    .formularioProducto {
+        margin: 2em 1em;
+        padding: 2em;
+        max-width: 100%;
+    }
+
+    .campoFormularioGrupo {
+        flex-direction: column;
+        gap: 1em;
+    }
+}
