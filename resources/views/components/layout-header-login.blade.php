@@ -6,7 +6,7 @@
     <title>FutsalWear</title>
     <link rel="shortcut icon" href="../imagenesWEB/iconoBg.png" type="image/x-icon">
     <link rel="stylesheet" href="{{URL::asset('css/loginCss.css')}}">
-    <script type="text/javascript" src="jquery-3.7.1.js"></script>
+    <script type="text/javascript" src="../../../public/js/jquery-3.7.1.js"></script>
 </head>
 
 <body class="bodyInicio">
@@ -17,11 +17,11 @@
         <img class="logoHeader" src="Imagenes/iconoBg1.png" alt="Logo FUTSALWEAR">
         <div class="tituloHeader"> <a href="{{ url('/') }}">FUTSALWEAR</a></div>
     </div>
-
+<!--
     <div class="linksHeader">
         <a href="/login" class="inicioSesion">LOGIN</a>
     </div>
-
+-->
 </header>
 
 

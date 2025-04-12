@@ -248,6 +248,21 @@ footer {
 }
 
 @media screen and (max-width: 600px) {
+
+
+    p{
+        margin-block-start: 0.5em;
+        margin-block-end: 0.5em;
+
+    }
+
+    .infoProducto {
+        gap: 2px;
+    }
+
+    .imagenProducto img {
+        width: 70%;
+    }
     .productoDetalle {
         padding: 15px;
     }

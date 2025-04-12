@@ -124,5 +124,10 @@ class UsuarioController extends Controller
         }
     }
 
+    public function usuarioCerrarSesion (){
+        Auth::logout();
+        return redirect("/login");
+    }
+
 
 }

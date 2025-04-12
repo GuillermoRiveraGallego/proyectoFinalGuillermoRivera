@@ -6,7 +6,7 @@
     <title>FutsalWear</title>
     <link rel="shortcut icon" href="../imagenesWEB/iconoBg.png" type="image/x-icon">
     <link rel="stylesheet" href="{{URL::asset('css/estilosProductoOpciones.css')}}">
-    <script type="text/javascript" src="jquery-3.7.1.js"></script>
+    <script type="text/javascript" src="../../../public/js/jquery-3.7.1.js"></script>
 </head>
 
 <body class="bodyInicio">
@@ -18,7 +18,7 @@
     </div>
 
     <div class="linksHeader">
-        <a href="carrito.html">&#128722;</a>
+        <a href="/carrito">&#128722;</a>
         <div class="buscadorHeader">
         </div>
     </div>

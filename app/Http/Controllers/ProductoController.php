@@ -11,20 +11,20 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = \App\Models\Producto::paginate(12);
-        return view('vistaPrincipal', ['producto' => $productos]);
+        return view('vistaPrincipal', ['producto' => $productos, 'categoriaSeleccionada' => ""]);
     }
 
     public function filtrarPorCategoria($nombre) {
+        $categoria = Categoria::where('nombre', $nombre)->firstOrFail();
 
-    $categoria = Categoria::where('nombre', $nombre)->firstOrFail();
+        $productos = Producto::where('categoria_id', $categoria->id)->paginate(8);
 
-    $productos = Producto::where('categoria_id', $categoria->id)->paginate(12);
-
-    return view('vistaPrincipal', [
-        'producto' => $productos,
-        'categoriaSeleccionada' => $categoria->nombre
-    ]);
+        return view('vistaPrincipal', [
+            'producto' => $productos,
+            'categoriaSeleccionada' => $categoria->nombre
+        ]);
     }
+
 
     public function mostrar($id)
     {
@@ -78,6 +78,145 @@ class ProductoController extends Controller
 
         return redirect()->route('crearProducto')->with('success', 'Producto creado correctamente.');
     }
+
+
+    public function mostrarFormularioEditar(Request $request)
+    {
+        $producto = Producto::find($request->producto_id);
+
+        if (!$producto) {
+            return redirect()->route('editarProducto')->with('error', 'Producto no encontrado.');
+        }
+
+        return view('formularioEditarProducto', compact('producto'));
+    }
+
+
+    public function funcionActualizarProducto(Request $request)
+    {
+        $producto = Producto::findOrFail($request->id); // O usa el ID desde la ruta si prefieres
+
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'precio' => 'required|numeric|min:0',
+            'categoria_id' => 'required|in:1,2,3',
+        ]);
+
+        $producto->nombre = $request->nombre;
+        $producto->descripcion = $request->descripcion;
+        $producto->precio = $request->precio;
+        $producto->categoria_id = $request->categoria_id;
+
+        if ($request->hasFile('imagenes')) {
+            $rutaImagen = time() . '_' . $request->file('imagenes')->getClientOriginalName();
+            $request->file('imagenes')->move(public_path('Imagenes'), $rutaImagen);
+            $producto->imagenes = "Imagenes/" . $rutaImagen;
+        } elseif ($request->filled('imagen_actual')) {
+            $producto->imagenes = json_encode([$request->imagen_actual]); // Conservar imagen anterior
+        }
+
+
+        $producto->save();
+
+        return redirect("/login");
+    }
+
+
+    public function buscar(Request $request)
+    {
+        $busqueda = $request->input('q');
+        $categoriaNombre = $request->input('categoria');
+
+        $query = Producto::query();
+
+        if (!empty($categoriaNombre)) {
+            $categoria = Categoria::where('nombre', $categoriaNombre)->first();
+            if ($categoria) {
+                $query->where('categoria_id', $categoria->id);
+            }
+        }
+
+        if (!empty($busqueda)) {
+            $query->where('nombre', 'like', '%' . $busqueda . '%');
+        }
+
+        $productos = $query->paginate(12)->withQueryString();
+
+
+
+
+        return view('vistaPrincipal', [
+            'producto' => $productos,
+            'categoriaSeleccionada' => $categoriaNombre ?? ''
+        ]);
+    }
+
+    public function agregarAlCarrito(Request $request)
+    {
+        $productoId = $request->input('producto_id');
+        $producto = Producto::findOrFail($productoId);
+
+        $carrito = session()->get('carrito', []);
+
+        // Si ya está en el carrito, incrementa la cantidad
+        if (isset($carrito[$productoId])) {
+            $carrito[$productoId]['cantidad']++;
+        } else {
+            $carrito[$productoId] = [
+                'nombre' => $producto->nombre,
+                'precio' => $producto->precio,
+                'imagen' => $producto->imagenes,
+                'cantidad' => 1,
+            ];
+        }
+
+        session()->put('carrito', $carrito);
+
+        return redirect()->back()->with('success', 'Producto añadido al carrito.');
+    }
+
+
+
+    public function verCarrito()
+    {
+        $carrito = session('carrito', []);
+        return view('carrito', compact('carrito'));
+    }
+
+
+    public function eliminarUnidad(Request $request)
+    {
+        $carrito = session('carrito', []);
+
+        $productoId = $request->input('producto_id');
+
+        if (isset($carrito[$productoId])) {
+            if ($carrito[$productoId]['cantidad'] > 1) {
+                $carrito[$productoId]['cantidad']--;
+            } else {
+                unset($carrito[$productoId]);
+            }
+            session(['carrito' => $carrito]);
+        }
+
+        return redirect()->back();
+    }
+
+    public function eliminarProducto(Request $request)
+    {
+        $carrito = session('carrito', []);
+
+        $productoId = $request->input('producto_id');
+
+        unset($carrito[$productoId]);
+
+        session(['carrito' => $carrito]);
+
+        return redirect()->back();
+    }
+
+
 
 }
 

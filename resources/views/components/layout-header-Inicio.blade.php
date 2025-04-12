@@ -6,7 +6,6 @@
     <title>FutsalWear</title>
     <link rel="shortcut icon" href="../imagenesWEB/iconoBg.png" type="image/x-icon">
     <link rel="stylesheet" href="{{URL::asset('css/estilosIndexPrincipal.css')}}">
-    <script type="text/javascript" src="jquery-3.7.1.js"></script>
 </head>
 
 <body class="bodyInicio">
@@ -23,7 +22,6 @@
     </div>
 
 </header>
-
 
 {{$slot}}
 

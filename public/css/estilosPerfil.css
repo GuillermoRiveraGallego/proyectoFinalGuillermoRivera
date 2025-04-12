@@ -6,6 +6,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -309,6 +310,103 @@ footer {
 
 
 
+.contenedorCarritoCompra {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex: 1;
+    padding: 2em;
+    background-color: #f4f4f4;
+}
+
+.contenedorInternoCarritoCompra {
+    margin-top: 8em;
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tituloCarrito {
+    font-size: 1.8em;
+    margin-bottom: 1em;
+    font-family: "Kanit", sans-serif;
+    text-align: center;
+    color: #B22222;
+}
+
+.carritoVacio {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+}
+
+.listaCarrito {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.itemCarrito {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.imagenCarrito {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.infoCarrito {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.nombreProducto {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.botonEliminar {
+    padding: 0.4em 0.8em;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botonEliminar:hover {
+    background-color: #c82333;
+}
+
+.totalCarrito {
+    margin-top: 2em;
+    text-align: right;
+}
+
+.botonCompra {
+    margin-top: 1em;
+    background-color: #B22222;
+    color: white;
+    border: none;
+    padding: 0.7em 1.4em;
+    font-size: 1em;
+    border-radius: 8px;
+
+}
 
 
 

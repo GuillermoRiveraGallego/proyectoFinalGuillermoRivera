@@ -1,13 +1,62 @@
-<x-layout-header>
+<x-layout-header :categoriaSeleccionada="$categoriaSeleccionada">
+
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const desplegable = document.querySelector(".desplegableCategorias");
+            const boton = document.querySelector(".botonDesplegable");
+
+            function ajustarDesplegable() {
+                if (window.innerWidth > 1024) {
+                    desplegable.style.display = "block";
+                } else {
+                    desplegable.style.display = "none";
+                }
+            }
+
+            ajustarDesplegable();
+
+            if (boton) {
+                boton.addEventListener("click", () => {
+                    if (desplegable.style.display === "none") {
+                        desplegable.style.display = "block";
+                    } else {
+                        desplegable.style.display = "none";
+                    }
+                });
+            }
+
+            // Al cambiar el tamaño de la ventana
+            window.addEventListener("resize", ajustarDesplegable);
+        });
+    </script>
+
+
     <div class="contenidoWeb">
         <!-- Menú lateral -->
         <aside class="menuLateral">
             <h3 class="botonDesplegable">Categorías ▼</h3>
             <ul class="desplegableCategorias">
-                <li><a href="{{ route('productos.categoria', ['nombre' => 'Camisetas']) }}">Camisetas</a></li>
-                <li><a href="{{ route('productos.categoria', ['nombre' => 'Pantalones']) }}">Pantalones</a></li>
-                <li><a href="{{ route('productos.categoria', ['nombre' => 'Zapatillas']) }}">Zapatillas</a></li>
+                <li>
+                    <a href="{{ route('productos.categoria', ['nombre' => 'Camisetas']) }}"
+                       class="{{ $categoriaSeleccionada === 'Camisetas' ? 'categoriaActiva' : '' }}">
+                        Camisetas
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('productos.categoria', ['nombre' => 'Pantalones']) }}"
+                       class="{{ $categoriaSeleccionada === 'Pantalones' ? 'categoriaActiva' : '' }}">
+                        Pantalones
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('productos.categoria', ['nombre' => 'Zapatillas']) }}"
+                       class="{{ $categoriaSeleccionada === 'Zapatillas' ? 'categoriaActiva' : '' }}">
+                        Zapatillas
+                    </a>
+                </li>
             </ul>
+
         </aside>
 
         <!-- Sección de productos -->

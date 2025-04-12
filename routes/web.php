@@ -38,7 +38,9 @@ Route::get('/perfilUsuario', [UsuarioController::class, 'verPerfil'])
     ->middleware('auth');
 
 
-
+Route::get('/cerrarSesion', [UsuarioController::class, 'usuarioCerrarSesion'])
+    ->name('usuarioCerrarSesion')
+    ->middleware('auth');
 
 
 
@@ -75,10 +77,22 @@ Route::post('/eliminarProducto', [ProductoController::class, 'funcionEliminarPro
 
 
 
-
 Route::get('/editarProducto', function () {
-    return view('editarProducto');
+    $productos = Producto::orderBy('nombre', 'asc')->get();
+    return view('editarProducto', compact('productos'));
 })->name('editarProducto')->middleware(['auth']);
+
+Route::post('/editarProductoForm', [ProductoController::class, 'mostrarFormularioEditar'])
+    ->middleware(['auth'])
+    ->name('editarProductoForm');
+
+Route::post('/actualizarProducto', [ProductoController::class, 'funcionActualizarProducto'])
+    ->middleware(['auth'])
+    ->name('actualizarProducto');
+
+
+
+
 
 
 
@@ -108,3 +122,17 @@ Route::get('/hacerAdmin', function () {
 Route::post('/hacerAdmin', [UsuarioController::class, 'funcionHacerAdmin'])
     ->middleware(['auth'])
     ->name('hacerAdmin');
+
+
+
+Route::get('/buscar-productos', [ProductoController::class, 'buscar'])->name('productos.buscar');
+
+
+
+
+Route::post('/carrito/agregar', [ProductoController::class, 'agregarAlCarrito'])->middleware('auth')->name('carrito.agregar');
+Route::get('/carrito', [ProductoController::class, 'verCarrito'])->middleware('auth')->name('carrito.ver');
+Route::post('/carrito/eliminar-unidad', [ProductoController::class, 'eliminarUnidad'])->name('carrito.eliminarUnidad');
+Route::post('/carrito/eliminar-producto', [ProductoController::class, 'eliminarProducto'])->name('carrito.eliminarProducto');
+
+

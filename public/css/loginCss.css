@@ -8,8 +8,12 @@ body {
     display: flex;
     flex-direction: column;
     font-family: "Kanit", sans-serif;
-    background-color: #f4f4f4;
+    background-image: url('../Imagenes/gbImagenLogin.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
 
 header {
     display: flex;
@@ -83,11 +87,11 @@ header {
 }
 
 .inicioSesion form {
-    background-color: white;
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.7));
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
     padding: 2em;
     padding-right: 3.5em;
     border-radius: 1em;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
 }
@@ -101,6 +105,9 @@ header {
 
 .inicioSesion input[type="text"],
 .inicioSesion input[type="password"] {
+
+    background-color: black;
+    color: white;
     width: 100%;
     padding: 0.8em;
     margin-bottom: 1.2em;
@@ -150,6 +157,39 @@ footer {
 
 .logos a {
     text-decoration: none;
+}
+
+.formularioRegistro {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+    max-width: 450px;
+    margin: auto;
+    background-color: #fff;
+    padding: 2em 2.5em;
+    border-radius: 1em;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    font-family: 'Kanit', sans-serif;
+}
+
+.formularioRegistro h2 {
+    text-align: center;
+    margin-bottom: 1em;
+    color: #B22222;
+}
+
+.inputRegistro {
+    padding: 0.8em;
+    border-radius: 0.5em;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    font-family: 'Kanit', sans-serif;
+    transition: border 0.3s ease;
+}
+
+.inputRegistro:focus {
+    border-color: #B22222;
+    outline: none;
 }
 
 @media (max-width: 600px) {

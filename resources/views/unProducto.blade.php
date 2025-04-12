@@ -1,7 +1,9 @@
 <x-layout-header-producto>
+
     <div class="contenidoWebUnProducto">
         <aside class="menuLateral">
-            <a href="{{ url()->previous() }}" class="botonCompra">Volver</a>
+            <a href="{{ route('productos.vista') }}" class="botonCompra">Volver</a>
+
         </aside>
 
         <section class="productoDetalle">
@@ -26,9 +28,15 @@
                         <option>XL</option>
                     </select>
 
-                    <button class="botonCompra">Añadir al carrito 🛒</button>
+                    <form method="POST" action="{{ route('carrito.agregar') }}">
+                        @csrf
+                        <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                        <button type="submit" class="botonCompra">Añadir al carrito 🛒</button>
+                    </form>
+
                 </div>
             </div>
+
         </section>
     </div>
 </x-layout-header-producto>

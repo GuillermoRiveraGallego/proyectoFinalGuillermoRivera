@@ -23,6 +23,12 @@
                 <span>{{ $usuario->created_at->format('d \d\e F \d\e Y') }}</span>
             </div>
 
+            <div class="adminBotonContainer">
+                <a href="/cerrarSesion" class="botonAdmin">
+                    Cerrar Sesion
+                </a>
+            </div>
+
             @if($usuario->es_admin)
                 <div class="adminBotonContainer">
                     <a href="/zonaAdministracion" class="botonAdmin">
