@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categoria;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ProductoController extends Controller
 {
@@ -216,6 +217,28 @@ class ProductoController extends Controller
         return redirect()->back();
     }
 
+
+
+
+
+    public function generarFactura()
+    {
+        $carrito = session('carrito', []);
+
+        if (empty($carrito)) {
+            return redirect()->back()->with('error', 'El carrito está vacío.');
+        }
+
+        $total = collect($carrito)->sum(fn($item) => $item['precio'] * $item['cantidad']);
+        $fecha = now()->format('d/m/Y H:i');
+
+        $pdf = Pdf::loadView('facturaPDF', compact('carrito', 'total', 'fecha'));
+
+        // Simula vaciar carrito tras compra
+        session()->forget('carrito');
+
+        return $pdf->download('Factura_FutsalWear.pdf');
+    }
 
 
 }

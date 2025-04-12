@@ -30,7 +30,8 @@
                     <p><strong>Total:</strong> €
                         {{ number_format(collect($carrito)->sum(fn($item) => $item['precio'] * $item['cantidad']), 2) }}
                     </p>
-                    <button class="botonCompra" >Comprar ahora</button>
+                    <a href="{{ route('carrito.factura') }}" class="botonCompra">Comprar ahora</a>
+
                 </div>
             @endif
 

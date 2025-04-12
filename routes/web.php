@@ -135,4 +135,5 @@ Route::get('/carrito', [ProductoController::class, 'verCarrito'])->middleware('a
 Route::post('/carrito/eliminar-unidad', [ProductoController::class, 'eliminarUnidad'])->name('carrito.eliminarUnidad');
 Route::post('/carrito/eliminar-producto', [ProductoController::class, 'eliminarProducto'])->name('carrito.eliminarProducto');
 
+Route::get('/carrito/compra', [ProductoController::class, 'generarFactura'])->name('carrito.factura')->middleware('auth');
 
