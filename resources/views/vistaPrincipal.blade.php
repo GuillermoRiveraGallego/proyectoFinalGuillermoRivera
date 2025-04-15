@@ -1,7 +1,6 @@
 <x-layout-header :categoriaSeleccionada="$categoriaSeleccionada">
 
-
-<script>
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             const desplegable = document.querySelector(".desplegableCategorias");
             const boton = document.querySelector(".botonDesplegable");
@@ -18,19 +17,14 @@
 
             if (boton) {
                 boton.addEventListener("click", () => {
-                    if (desplegable.style.display === "none") {
-                        desplegable.style.display = "block";
-                    } else {
-                        desplegable.style.display = "none";
-                    }
+                    desplegable.style.display =
+                        desplegable.style.display === "none" ? "block" : "none";
                 });
             }
 
-            // Al cambiar el tamaño de la ventana
             window.addEventListener("resize", ajustarDesplegable);
         });
     </script>
-
 
     <div class="contenidoWeb">
         <!-- Menú lateral -->
@@ -56,7 +50,6 @@
                     </a>
                 </li>
             </ul>
-
         </aside>
 
         <!-- Sección de productos -->
@@ -64,16 +57,15 @@
             @foreach ($producto as $po)
                 <div class="producto">
                     <a href="{{ route('producto.mostrar', $po->id) }}">
-                        <img src="{{ asset($po->imagenes) }}" alt="Imagen del producto">
+                        <div class="imagen-wrapper">
+                            <img src="{{ asset($po->imagenes) }}" alt="Imagen del producto">
+                        </div>
                     </a>
-                        <h4>{{ $po->nombre }}</h4>
-                        <p>€{{ number_format($po->precio, 2) }}</p>
-
+                    <h4>{{ $po->nombre }}</h4>
+                    <p>€{{ number_format($po->precio, 2) }}</p>
                 </div>
             @endforeach
         </section>
-
-
     </div>
 
     <div class="paginacion">

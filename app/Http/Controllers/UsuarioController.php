@@ -32,6 +32,19 @@ class UsuarioController extends Controller
             'contrasena' => 'required|min:4',
             'nombre' => 'required',
             'apellidos' => 'required',
+        ], [
+            'nombre_usuario.required' => 'Debes introducir un nombre de usuario.',
+            'nombre_usuario.unique' => 'Este nombre de usuario ya está en uso.',
+
+            'correo.required' => 'El correo electrónico es obligatorio.',
+            'correo.email' => 'Introduce un correo electrónico válido.',
+            'correo.unique' => 'Este correo ya está registrado.',
+
+            'contrasena.required' => 'La contraseña es obligatoria.',
+            'contrasena.min' => 'La contraseña debe tener al menos 4 caracteres.',
+
+            'nombre.required' => 'El nombre es obligatorio.',
+            'apellidos.required' => 'Los apellidos son obligatorios.',
         ]);
 
         $usuario = new Usuario();

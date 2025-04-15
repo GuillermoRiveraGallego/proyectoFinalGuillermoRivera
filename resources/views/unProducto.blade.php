@@ -21,16 +21,25 @@
 
                 <div class="opcionesCompra">
                     <label for="talla">Talla:</label>
-                    <select id="talla">
-                        <option>S</option>
-                        <option>M</option>
-                        <option>L</option>
-                        <option>XL</option>
+                    <select id="talla" name="talla">
+                        @if ($producto->categoria_id == 3)
+                            {{-- Zapatillas --}}
+                            @foreach (range(38, 46) as $talla)
+                                <option value="{{ $talla }}">{{ $talla }}</option>
+                            @endforeach
+                        @else
+                            {{-- Camisetas, pantalones... --}}
+                            @foreach (['S', 'M', 'L', 'XL'] as $talla)
+                                <option value="{{ $talla }}">{{ $talla }}</option>
+                            @endforeach
+                        @endif
                     </select>
+
 
                     <form method="POST" action="{{ route('carrito.agregar') }}">
                         @csrf
                         <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                        <input type="hidden" name="talla" id="input-talla" value="">
                         <button type="submit" class="botonCompra">Añadir al carrito 🛒</button>
                     </form>
 
@@ -39,4 +48,18 @@
 
         </section>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const selectTalla = document.getElementById("talla");
+            const inputTalla = document.getElementById("input-talla");
+
+            selectTalla.addEventListener("change", function () {
+                inputTalla.value = this.value;
+            });
+
+            inputTalla.value = selectTalla.value;
+        });
+    </script>
+
 </x-layout-header-producto>

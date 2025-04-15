@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Factura;
+use App\Models\Pedido;
+use App\Models\PedidoProducto;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categoria;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 
 class ProductoController extends Controller
 {
     public function index()
     {
-        $productos = \App\Models\Producto::paginate(12);
+        $productos = \App\Models\Producto::paginate(8);
         return view('vistaPrincipal', ['producto' => $productos, 'categoriaSeleccionada' => ""]);
     }
 
@@ -114,7 +118,9 @@ class ProductoController extends Controller
             $request->file('imagenes')->move(public_path('Imagenes'), $rutaImagen);
             $producto->imagenes = "Imagenes/" . $rutaImagen;
         } elseif ($request->filled('imagen_actual')) {
-            $producto->imagenes = json_encode([$request->imagen_actual]); // Conservar imagen anterior
+            $producto->imagenes = $request->imagen_actual; // Conservar imagen anterior
+
+
         }
 
 
@@ -156,18 +162,22 @@ class ProductoController extends Controller
     public function agregarAlCarrito(Request $request)
     {
         $productoId = $request->input('producto_id');
-        $producto = Producto::findOrFail($productoId);
+        $talla = $request->input('talla'); // Capturamos la talla
 
+        $producto = Producto::findOrFail($productoId);
         $carrito = session()->get('carrito', []);
 
-        // Si ya está en el carrito, incrementa la cantidad
-        if (isset($carrito[$productoId])) {
-            $carrito[$productoId]['cantidad']++;
+        // Usamos ID + talla como clave única
+        $clave = $productoId . '_' . $talla;
+
+        if (isset($carrito[$clave])) {
+            $carrito[$clave]['cantidad']++;
         } else {
-            $carrito[$productoId] = [
+            $carrito[$clave] = [
                 'nombre' => $producto->nombre,
                 'precio' => $producto->precio,
                 'imagen' => $producto->imagenes,
+                'talla' => $talla,
                 'cantidad' => 1,
             ];
         }
@@ -176,6 +186,7 @@ class ProductoController extends Controller
 
         return redirect()->back()->with('success', 'Producto añadido al carrito.');
     }
+
 
 
 
@@ -188,21 +199,22 @@ class ProductoController extends Controller
 
     public function eliminarUnidad(Request $request)
     {
-        $carrito = session('carrito', []);
+        $clave = $request->input('producto_id'); // Ya es '12_42', por ejemplo
+        $carrito = session()->get('carrito', []);
 
-        $productoId = $request->input('producto_id');
-
-        if (isset($carrito[$productoId])) {
-            if ($carrito[$productoId]['cantidad'] > 1) {
-                $carrito[$productoId]['cantidad']--;
+        if (isset($carrito[$clave])) {
+            if ($carrito[$clave]['cantidad'] > 1) {
+                $carrito[$clave]['cantidad']--;
             } else {
-                unset($carrito[$productoId]);
+                unset($carrito[$clave]);
             }
-            session(['carrito' => $carrito]);
+
+            session()->put('carrito', $carrito);
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Producto actualizado.');
     }
+
 
     public function eliminarProducto(Request $request)
     {
@@ -219,8 +231,6 @@ class ProductoController extends Controller
 
 
 
-
-
     public function generarFactura()
     {
         $carrito = session('carrito', []);
@@ -230,15 +240,48 @@ class ProductoController extends Controller
         }
 
         $total = collect($carrito)->sum(fn($item) => $item['precio'] * $item['cantidad']);
-        $fecha = now()->format('d/m/Y H:i');
+        $fecha = now();
 
-        $pdf = Pdf::loadView('facturaPDF', compact('carrito', 'total', 'fecha'));
+        // 1️⃣ Guardar la factura
+        $factura = new Factura();
+        $factura->usuario_id = Auth::id();
+        $factura->total = $total;
+        $factura->metodo_pago = 'Tarjeta'; // Puedes hacer esto dinámico en el futuro
+        $factura->fecha_pago = $fecha;
+        $factura->save();
 
-        // Simula vaciar carrito tras compra
+        // 2️⃣ Crear el pedido asociado a esa factura
+        $pedido = new Pedido();
+        $pedido->usuario_id = Auth::id();
+        $pedido->factura_id = $factura->id;
+        $pedido->estado = 'pendiente'; // o 'pagado', según tu lógica
+        $pedido->total = $total;
+        $pedido->save();
+
+        // 3️⃣ Guardar los productos del pedido
+        foreach ($carrito as $clave => $item) {
+            $productoId = explode('_', $clave)[0]; // Si tu clave es '12_M' o '15_42'
+
+            PedidoProducto::create([
+                'pedido_id' => $pedido->id,
+                'producto_id' => $productoId,
+                'cantidad' => $item['cantidad'],
+                'precio_unitario' => $item['precio']
+            ]);
+        }
+
+        // 4️⃣ Generar PDF
+        $pdf = Pdf::loadView('facturaPDF', [
+            'carrito' => $carrito,
+            'total' => $total,
+            'fecha' => $fecha->format('d/m/Y H:i')
+        ]);
+
         session()->forget('carrito');
 
         return $pdf->download('Factura_FutsalWear.pdf');
     }
+
 
 
 }

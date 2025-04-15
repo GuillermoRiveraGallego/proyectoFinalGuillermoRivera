@@ -87,7 +87,7 @@ header {
 }
 
 .inicioSesion form {
-    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.7));
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.9));
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
     padding: 2em;
     padding-right: 3.5em;
@@ -104,7 +104,8 @@ header {
 }
 
 .inicioSesion input[type="text"],
-.inicioSesion input[type="password"] {
+.inicioSesion input[type="password"],
+.inicioSesion input[type="email"]{
 
     background-color: black;
     color: white;
@@ -192,7 +193,7 @@ footer {
     outline: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
     .inicioSesion {
         padding: 1em;
     }
@@ -208,5 +209,28 @@ footer {
     .botonCompra {
         font-size: 1em;
     }
+
+    .inicioSesion input[type="text"],
+    .inicioSesion input[type="password"],
+    .inicioSesion input[type="email"]{
+
+
+        width: 90%;
+
+    }
+
+
 }
+
+    .erroresRegistro {
+        background-color: rgba(23, 23, 23, 0.5);
+        color: #270505;
+        padding: 1em;
+        border-radius: 0.5em;
+        font-size: 0.95em;
+        margin-bottom: 1.2em;
+    }
+
+
+
 

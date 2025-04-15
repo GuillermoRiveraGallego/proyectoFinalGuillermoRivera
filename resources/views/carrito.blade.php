@@ -14,6 +14,11 @@
                             <img src="{{ asset($item['imagen']) }}" alt="Producto" class="imagenCarrito">
                             <div class="infoCarrito">
                                 <p class="nombreProducto">{{ $item['nombre'] }}</p>
+                                @if(isset($item['talla']))
+                                    <p class="tallaProducto">Talla: {{ $item['talla'] }}</p>
+                                @endif
+
+
                                 <p>{{ $item['cantidad'] }} x €{{ number_format($item['precio'], 2) }}</p>
 
                                 <form action="{{ route('carrito.eliminarUnidad') }}" method="POST">
