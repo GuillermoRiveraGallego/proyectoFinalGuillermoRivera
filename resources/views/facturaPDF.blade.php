@@ -51,15 +51,27 @@
     </tr>
     </thead>
     <tbody>
-    @foreach($carrito as $item)
-        <tr>
-            <td>{{ $item['nombre'] }}</td>
-            <td>{{ $item['cantidad'] }}</td>
-            <td>€{{ number_format($item['precio'], 2) }}</td>
-            <td>€{{ number_format($item['precio'] * $item['cantidad'], 2) }}</td>
-        </tr>
-    @endforeach
+    @if(isset($carrito))
+        @foreach($carrito as $item)
+            <tr>
+                <td>{{ $item['nombre'] }}</td>
+                <td>{{ $item['cantidad'] }}</td>
+                <td>€{{ number_format($item['precio'], 2) }}</td>
+                <td>€{{ number_format($item['precio'] * $item['cantidad'], 2) }}</td>
+            </tr>
+        @endforeach
+    @elseif(isset($productos))
+        @foreach($productos as $item)
+            <tr>
+                <td>{{ $item->producto->nombre ?? 'Producto eliminado' }}</td>
+                <td>{{ $item->cantidad }}</td>
+                <td>€{{ number_format($item->precio_unitario, 2) }}</td>
+                <td>€{{ number_format($item->cantidad * $item->precio_unitario, 2) }}</td>
+            </tr>
+        @endforeach
+    @endif
     </tbody>
+
 </table>
 
 <p class="total">Total: €{{ number_format($total, 2) }}</p>

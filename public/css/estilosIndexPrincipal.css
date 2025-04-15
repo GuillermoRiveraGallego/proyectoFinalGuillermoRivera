@@ -6,6 +6,7 @@ body {
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #eae9e9;
 
 }
 
@@ -269,6 +270,7 @@ footer {
     object-fit: contain;
     transition: transform 0.3s ease-in-out;
     display: block;
+    border-radius: 1em;
 }
 
 
@@ -628,7 +630,33 @@ footer {
 }
 
 
+.noProductos {
+    text-align: center;
+    font-size: 1.2em;
+    color: #555;
+    padding: 2em;
+    grid-column: 1 / -1;
+}
 
+.carritoIcono {
+    position: relative;
+    display: inline-block;
+    color: inherit;
+}
+
+.carritoCantidad {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: lightcoral;
+    color: white;
+    font-size: 0.7em;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 999px;
+    line-height: 1;
+    box-shadow: 0 0 0 2px white;
+}
 
 
 

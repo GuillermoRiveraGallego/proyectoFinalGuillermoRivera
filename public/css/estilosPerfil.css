@@ -138,7 +138,8 @@ footer {
 
 .perfilContainer h2 {
     text-align: center;
-    margin-bottom: 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
     color: #B22222;
     font-size: 2em;
 }
@@ -406,6 +407,54 @@ footer {
     border-radius: 8px;
 
 }
+
+
+
+.botonFactura{
+    margin-top: 1em;
+    background-color: #B22222;
+    color: white;
+    border: none;
+    padding: 0.6em 1.2em;
+    font-size: 0.8em;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.listaPedidos .pedidoItem {
+    padding: 1em 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.listaPedidos .pedidoItem:last-child {
+    border-bottom: none;
+}
+.botonAdmin svg {
+    vertical-align: middle;
+    margin-left: 1em;
+
+}
+
+.carritoIcono {
+    position: relative;
+    display: inline-block;
+    color: inherit;
+}
+
+.carritoCantidad {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: lightcoral;
+    color: white;
+    font-size: 0.7em;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 999px;
+    line-height: 1;
+    box-shadow: 0 0 0 2px white;
+}
+
 
 
 

@@ -33,9 +33,14 @@ class ProductoController extends Controller
 
     public function mostrar($id)
     {
-        $producto = Producto::findOrFail($id);
-        return view('unProducto', compact('producto'));
+        $producto = Producto::with('resenas.usuario')->findOrFail($id);
+
+        $promedio = round($producto->resenas->avg('puntuacion'), 1);
+        $cantidad = $producto->resenas->count();
+
+        return view('unProducto', compact('producto', 'promedio', 'cantidad'));
     }
+
 
     public function funcionEliminarProducto(Request $request)
     {

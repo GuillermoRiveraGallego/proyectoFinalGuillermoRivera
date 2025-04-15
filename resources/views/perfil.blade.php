@@ -32,10 +32,32 @@
             @if($usuario->es_admin)
                 <div class="adminBotonContainer">
                     <a href="/zonaAdministracion" class="botonAdmin">
-                        Gestionar productos 🔧
+                        Gestionar productos
                     </a>
                 </div>
             @endif
+
+            <h2>Mis Pedidos</h2>
+
+            @if($pedidos->isEmpty())
+                <p>No has realizado ningún pedido todavía.</p>
+            @else
+                <div class="listaPedidos">
+                    @foreach($pedidos as $pedido)
+                        <div class="pedidoItem">
+                            <p><strong>Pedido #{{ $pedido->id }}</strong> — {{ $pedido->created_at->format('d/m/Y H:i') }}</p>
+                            <p>Estado: <span class="estadoPedido">{{ ucfirst($pedido->estado) }}</span></p>
+                            <p>Total: €{{ number_format($pedido->total, 2) }}</p>
+                            @if($pedido->factura)
+                                <a href="{{ route('descargar.factura', ['factura' => $pedido->factura->id]) }}" class="botonFactura">
+                                    Descargar Factura 📄
+                                </a>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
         </div>
     </div>
 </x-layout-header-perfil>

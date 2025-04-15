@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\ResenasController;
 use App\Http\Controllers\UsuarioController;
+use App\Models\Factura;
 use App\Models\Producto;
 use App\Models\Usuario;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 
@@ -136,4 +139,34 @@ Route::post('/carrito/eliminar-unidad', [ProductoController::class, 'eliminarUni
 Route::post('/carrito/eliminar-producto', [ProductoController::class, 'eliminarProducto'])->name('carrito.eliminarProducto');
 
 Route::get('/carrito/compra', [ProductoController::class, 'generarFactura'])->name('carrito.factura')->middleware('auth');
+
+
+
+
+
+Route::get('/factura/{factura}', function(Factura $factura) {
+    $pedido = $factura->pedido;
+
+    if (!$pedido) {
+        return redirect()->back()->with('error', 'No se ha encontrado el pedido asociado a esta factura.');
+    }
+
+    $productos = $pedido->productos; // relación con pedidos_productos
+    $total = $pedido->total;
+    $fecha = \Carbon\Carbon::parse($factura->fecha_pago)->format('d/m/Y H:i');
+
+    $pdf = Pdf::loadView('facturaPDF', compact('productos', 'total', 'fecha'));
+
+    return $pdf->download('Factura_FutsalWear.pdf');
+})->name('descargar.factura')->middleware('auth');
+
+
+
+
+
+
+
+
+
+Route::post('/resenas/guardar', [ResenasController::class, 'guardar'])->name('resenas.guardar')->middleware('auth');
 

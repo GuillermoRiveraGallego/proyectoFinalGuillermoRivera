@@ -1,14 +1,15 @@
 <x-layout-header-login>
     <div class="inicioSesion" style="margin-top: 6em; padding: 2em;">
 
-        @if(session('success'))
-            <div style="color: green; margin-bottom: 1em; text-align: center;">
-                ✅ {{ session('success') }}
-            </div>
-        @endif
-        }
+
+
 
         <form method="POST" action="/login">
+            @if(session('success'))
+                <div style="color: green; margin-bottom: 1em; text-align: center;">
+                    ✅ {{ session('success') }}
+                </div>
+            @endif
             @if ($errors->any())
                 <div style="color: red; margin-bottom: 1em; text-align: center;">
                     <ul style="list-style: none; padding: 0;">

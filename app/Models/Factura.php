@@ -16,6 +16,11 @@ class Factura extends Model
         return $this->belongsTo(Usuario::class);
     }
 
+    public function pedido()
+    {
+        return $this->hasOne(Pedido::class);
+    }
+
     public function pedidos()
     {
         return $this->hasMany(Pedido::class);

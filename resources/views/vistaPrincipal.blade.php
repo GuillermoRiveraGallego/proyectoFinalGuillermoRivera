@@ -34,6 +34,7 @@
                 <li>
                     <a href="{{ route('productos.categoria', ['nombre' => 'Camisetas']) }}"
                        class="{{ $categoriaSeleccionada === 'Camisetas' ? 'categoriaActiva' : '' }}">
+
                         Camisetas
                     </a>
                 </li>
@@ -54,6 +55,12 @@
 
         <!-- Sección de productos -->
         <section class="productos">
+
+            @if ($producto->isEmpty())
+                <div class="noProductos">
+                    <p>No hay productos disponibles.</p>
+                </div> @endif
+
             @foreach ($producto as $po)
                 <div class="producto">
                     <a href="{{ route('producto.mostrar', $po->id) }}">

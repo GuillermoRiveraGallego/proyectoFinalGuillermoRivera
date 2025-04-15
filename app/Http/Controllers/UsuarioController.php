@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pedido;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -84,7 +85,14 @@ class UsuarioController extends Controller
     public function verPerfil()
     {
         $usuario = auth()->user();
-        return view('perfil', compact('usuario'));
+
+        // Obtenemos los pedidos del usuario con su factura asociada
+        $pedidos = Pedido::with('factura') // si quieres mostrar detalles de factura
+        ->where('usuario_id', $usuario->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('perfil', compact('usuario', 'pedidos'));
     }
 
     public function funcionEliminarUsuario(Request $request)
@@ -137,8 +145,13 @@ class UsuarioController extends Controller
         }
     }
 
-    public function usuarioCerrarSesion (){
+    public function usuarioCerrarSesion(Request $request)
+    {
         Auth::logout();
+        session()->forget('carrito'); // Limpia el carrito
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect("/login");
     }
 

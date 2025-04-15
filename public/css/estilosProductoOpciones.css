@@ -208,3 +208,22 @@ footer {
         gap: 1em;
     }
 }
+.carritoIcono {
+    position: relative;
+    display: inline-block;
+    color: inherit;
+}
+
+.carritoCantidad {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: lightcoral;
+    color: white;
+    font-size: 0.7em;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 999px;
+    line-height: 1;
+    box-shadow: 0 0 0 2px white;
+}
