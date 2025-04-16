@@ -284,7 +284,10 @@ class ProductoController extends Controller
 
         session()->forget('carrito');
 
-        return $pdf->download('Factura_FutsalWear.pdf');
+        return redirect()->route('carrito.ver')->with([
+            'success' => '¡Pedido realizado con éxito!',
+            'factura_id' => $factura->id
+        ]);
     }
 
 

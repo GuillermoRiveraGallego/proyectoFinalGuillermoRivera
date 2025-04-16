@@ -5,7 +5,20 @@
 
             <h2 class="tituloCarrito">🛒 Tu carrito de compra</h2>
 
-            @if(empty($carrito))
+            @if(session('success'))
+                <div class="alertaExito">
+                    {{ session('success') }}
+
+                    @if(session('factura_id'))
+                        <a href="{{ route('descargar.factura', ['factura' => session('factura_id')]) }}" class="botonFactura" style="margin-left: 1em;">
+                            Descargar factura 📄
+                        </a>
+                    @endif
+                </div>
+            @endif
+
+
+        @if(empty($carrito))
                 <p class="carritoVacio">Tu carrito está vacío.</p>
             @else
                 <div class="listaCarrito">

@@ -9,6 +9,7 @@
         <div>
 
         <section class="productoDetalle">
+
             <div class="imagenProducto">
                 @if ($producto->imagenes)
                     <img src="{{ asset($producto->imagenes) }}" alt="Imagen del producto">
@@ -58,6 +59,17 @@
             </div>
 
         </section>
+            @if(session('success'))
+                <div class="mensajeExito">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="mensajeError">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="resenasContainer">
                 <div class="resenasContainerInterno">
                     <div class="resenasResumen" onclick="toggleResenas()">
