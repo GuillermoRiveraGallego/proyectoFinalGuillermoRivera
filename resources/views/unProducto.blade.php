@@ -39,7 +39,7 @@
                     </select>
 
 
-                    <form method="POST" action="{{ route('carrito.agregar') }}">
+                    <form method="POST" action="{{ route('carrito.agregar') }}" onsubmit="deshabilitarBoton(this)">
                         @csrf
                         <input type="hidden" name="producto_id" value="{{ $producto->id }}">
                         <input type="hidden" name="talla" id="input-talla" value="">
@@ -135,6 +135,13 @@
             const lista = document.getElementById("resenasLista");
             lista.style.display = lista.style.display === "none" ? "block" : "none";
         }
+
+        function deshabilitarBoton(formulario) {
+            const boton = formulario.querySelector("button[type='submit']");
+            boton.disabled = true;
+            boton.innerHTML = "Añadiendo..."; // opcional
+        }
+
 
         document.addEventListener("DOMContentLoaded", function () {
             const selectTalla = document.getElementById("talla");

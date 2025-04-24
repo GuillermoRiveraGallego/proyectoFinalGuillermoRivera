@@ -34,7 +34,7 @@
 
                                 <p>{{ $item['cantidad'] }} x €{{ number_format($item['precio'], 2) }}</p>
 
-                                <form action="{{ route('carrito.eliminarUnidad') }}" method="POST">
+                                <form action="{{ route('carrito.eliminarUnidad') }}" method="POST" onsubmit="deshabilitarBoton(this)">
                                     @csrf
                                     <input type="hidden" name="producto_id" value="{{ $id }}">
                                     <button type="submit" class="botonEliminar">Quitar 1</button>
@@ -55,5 +55,12 @@
 
         </div>
     </div>
+    <script>
+        function deshabilitarBoton(formulario) {
+            const boton = formulario.querySelector("button[type='submit']");
+            boton.disabled = true;
+            boton.innerHTML = "Procesando..."; // opcional
+        }
+    </script>
 
 </x-layout-header-perfil>
