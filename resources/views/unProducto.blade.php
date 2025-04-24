@@ -27,7 +27,7 @@
                     <select id="talla" name="talla">
                         @if ($producto->categoria_id == 3)
                             {{-- Zapatillas --}}
-                            @foreach (range(38, 46) as $talla)
+                            @foreach (range(35, 46) as $talla)
                                 <option value="{{ $talla }}">{{ $talla }}</option>
                             @endforeach
                         @else

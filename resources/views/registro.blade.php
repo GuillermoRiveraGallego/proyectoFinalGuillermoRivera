@@ -1,6 +1,6 @@
 <x-layout-header-login>
     <div class="inicioSesion" style="margin-top: 6em; padding: 2em;">
-        <form method="POST" action="/registro" class="formularioRegistro">
+        <form method="POST" action="/registro" class="formularioRegistro" onsubmit="deshabilitarBoton(this)">
             <h2>Registrarse</h2>
 
             @if ($errors->any())
@@ -27,4 +27,14 @@
             <button type="submit" class="botonCompra">Crear cuenta</button>
         </form>
     </div>
+
+    <script>
+        function deshabilitarBoton(formulario) {
+            const boton = formulario.querySelector("button[type='submit']");
+            boton.disabled = true;
+            boton.innerHTML = "Entrando..."; // opcional: puedes personalizar el texto
+        }
+    </script>
+
+
 </x-layout-header-login>

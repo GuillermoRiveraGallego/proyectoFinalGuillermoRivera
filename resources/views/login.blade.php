@@ -4,7 +4,7 @@
 
 
 
-        <form method="POST" action="/login">
+        <form method="POST" action="/login" onsubmit="deshabilitarBoton(this)">
             @if(session('success'))
                 <div style="color: green; margin-bottom: 1em; text-align: center;">
                     ✅ {{ session('success') }}
@@ -34,4 +34,14 @@
         </form>
 
     </div>
+
+    <script>
+        function deshabilitarBoton(formulario) {
+            const boton = formulario.querySelector("button[type='submit']");
+            boton.disabled = true;
+            boton.innerHTML = "Entrando..."; // opcional: puedes personalizar el texto
+        }
+    </script>
+
+
 </x-layout-header-login>

@@ -54,9 +54,9 @@
         </aside>
 
         <!-- Sección de productos -->
-        <section class="productos">
+        <section class="productos {{ $producto->isEmpty() ? 'productosVacio' : '' }}">
 
-            @if ($producto->isEmpty())
+        @if ($producto->isEmpty())
                 <div class="noProductos">
                     <p>No hay productos disponibles.</p>
                 </div> @endif

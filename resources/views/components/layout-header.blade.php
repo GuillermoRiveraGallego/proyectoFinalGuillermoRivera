@@ -6,7 +6,7 @@
     <title>FutsalWear</title>
     <link rel="shortcut icon" href="../imagenesWEB/iconoBg.png" type="image/x-icon">
     <link rel="stylesheet" href="{{URL::asset('css/estilosIndexPrincipal.css')}}">
-    <script type="text/javascript" src="../../../public/js/jquery-3.7.1.js"></script>
+    <!-- <script type="text/javascript" src="../../../public/js/jquery-3.7.1.js"></script> -->
 </head>
 
 <body>
@@ -43,7 +43,7 @@
 
 
         <form action="{{ route('productos.buscar') }}" method="GET" class="buscadorHeader">
-            <input type="text" name="q" placeholder="¿Qué estás buscando?" value="{{ request('q') }}">
+            <input id="buscadorID" type="text" name="q" placeholder="¿Qué estás buscando?" value="{{ request('q') }}">
             @if (!empty($categoriaSeleccionada))
                 <input type="hidden" name="categoria" value="{{ $categoriaSeleccionada }}">
             @endif
