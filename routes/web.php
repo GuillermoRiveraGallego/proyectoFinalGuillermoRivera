@@ -52,7 +52,7 @@ Route::get('/cerrarSesion', [UsuarioController::class, 'usuarioCerrarSesion'])
 /*Administracion*/
 Route::get('/zonaAdministracion', function () {
     return view('opcionesAdministracion');
-})->name('admin.panel')->middleware(['auth']); /*necesitaria el admin para comprobar*/
+})->name('admin.panel')->middleware('auth:admin');
 
 
 
@@ -60,11 +60,11 @@ Route::get('/zonaAdministracion', function () {
 
 Route::get('/crearProducto', function () {
     return view('crearProducto');
-})->name('crearProducto')->middleware(['auth']);
+})->name('crearProducto')->middleware('auth:admin');
 
 Route::post('/crearProducto', [ProductoController::class, 'funcionCrearProducto'])
     ->middleware(['auth'])
-    ->name('crearProducto');
+    ->middleware('auth:admin');
 
 
 
@@ -73,9 +73,9 @@ Route::post('/crearProducto', [ProductoController::class, 'funcionCrearProducto'
 Route::get('/eliminarProducto', function () {
     $productos = Producto::orderBy('nombre', 'asc')->get();
     return view('eliminarProducto', compact('productos'));
-})->name('eliminarProducto')->middleware(['auth']);
+})->name('eliminarProducto')->middleware('auth:admin');
 
-Route::post('/eliminarProducto', [ProductoController::class, 'funcionEliminarProducto'])->middleware(['auth'])->name('eliminarProducto');
+Route::post('/eliminarProducto', [ProductoController::class, 'funcionEliminarProducto'])->middleware('auth:admin')->name('eliminarProducto');
 
 
 
@@ -83,14 +83,14 @@ Route::post('/eliminarProducto', [ProductoController::class, 'funcionEliminarPro
 Route::get('/editarProducto', function () {
     $productos = Producto::orderBy('nombre', 'asc')->get();
     return view('editarProducto', compact('productos'));
-})->name('editarProducto')->middleware(['auth']);
+})->name('editarProducto')->middleware('auth:admin');
 
 Route::post('/editarProductoForm', [ProductoController::class, 'mostrarFormularioEditar'])
-    ->middleware(['auth'])
+    ->middleware('auth:admin')
     ->name('editarProductoForm');
 
 Route::post('/actualizarProducto', [ProductoController::class, 'funcionActualizarProducto'])
-    ->middleware(['auth'])
+    ->middleware('auth:admin')
     ->name('actualizarProducto');
 
 
@@ -103,10 +103,10 @@ Route::post('/actualizarProducto', [ProductoController::class, 'funcionActualiza
 Route::get('/eliminarUsuario', function () {
     $usuarios = Usuario::orderBy('nombre_usuario', 'asc')->get();
     return view('eliminarUsuario', compact('usuarios'));
-})->name('eliminarUsuario')->middleware(['auth']);
+})->name('eliminarUsuario')->middleware('auth:admin');
 
 Route::post('/eliminarUsuario', [UsuarioController::class, 'funcionEliminarUsuario'])
-    ->middleware(['auth'])
+    ->middleware('auth:admin')
     ->name('eliminarUsuario');
 
 
@@ -114,16 +114,16 @@ Route::post('/eliminarUsuario', [UsuarioController::class, 'funcionEliminarUsuar
 
 Route::get('/hacerAdmin', function () {
     return view('hacerAdmin');
-})->name('hacerAdmin')->middleware(['auth']);
+})->name('hacerAdmin')->middleware('auth:admin');
 
 
 Route::get('/hacerAdmin', function () {
     $usuarios = Usuario::orderBy('nombre_usuario', 'asc')->get();
     return view('hacerAdmin', compact('usuarios'));
-})->name('hacerAdmin')->middleware(['auth']);
+})->name('hacerAdmin')->middleware('auth:admin');
 
 Route::post('/hacerAdmin', [UsuarioController::class, 'funcionHacerAdmin'])
-    ->middleware(['auth'])
+    ->middleware('auth:admin')
     ->name('hacerAdmin');
 
 

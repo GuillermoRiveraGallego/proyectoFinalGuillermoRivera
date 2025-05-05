@@ -32,6 +32,13 @@
             <h3 class="botonDesplegable">Categorías ▼</h3>
             <ul class="desplegableCategorias">
                 <li>
+                    <a href="/vistaPrincipal"
+                       class="{{ $categoriaSeleccionada === '' ? 'categoriaActiva' : '' }}">
+
+                        Todos los productos
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('productos.categoria', ['nombre' => 'Camisetas']) }}"
                        class="{{ $categoriaSeleccionada === 'Camisetas' ? 'categoriaActiva' : '' }}">
 
