@@ -97,17 +97,6 @@ header {
 }
 
 
-/*Hamburguesa para tablet y movil*/
-
-@media screen and (max-width: 1024px){
-
-
-    .buscadorHeader{
-        display: none;
-    }
-
-
-}
 
 
 
@@ -672,6 +661,20 @@ footer {
 
 
 
+/*Hamburguesa para tablet y movil*/
+
+@media screen and (max-width: 1024px){
+
+
+    .buscadorHeader{
+        display: none;
+    }
+
+    .tresImagenesInicial{
+        grid-template-columns: 1fr;
+    }
+
+}
 
 
 
